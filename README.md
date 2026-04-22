@@ -32,14 +32,9 @@ How to set up MongoDB:
   SECRET=your_secret_here
 PS! SECRET can be any array of letters and numbers!!
 
-Fix for problem 3 may need also
-test database for testing environment.
-When this needs to be added in the .env: TEST_MONGODB_URI=your_test_mongodb_uri
-for this it is needed to add a testBlogApp in MongoDb cluster, but 
-THIS IS NOT NECESSARY FOR THE APPLICATION TO RUN.
+IF SETTING UP MONGODB FEELS DIFFICULT GO THERE TO READ INSTRUCTIONS: https://fullstackopen.com/osa3/tietojen_tallettaminen_mongo_db_tietokantaan 
 
-
-Also try to run the backend in http://localhost:3003/api!!
+Try to run the backend in http://localhost:3003/api!!
 
 After this just run npm run dev in the src file.
 AND run npm run dev also in the bloglist-frontend folder in other terminal, because
@@ -51,6 +46,13 @@ http://localhost:5173
 
 backend:
 http://localhost:3003/api
+
+
+Fix for problem 3 may need also
+test database for testing environment.
+When this needs to be added in the .env: TEST_MONGODB_URI=your_test_mongodb_uri
+for this it is needed to add a testBlogApp in MongoDb cluster, but 
+THIS IS NOT NECESSARY FOR THE APPLICATION TO RUN.
 
 
 

@@ -18,7 +18,7 @@ Clone the repository to your computer locally and then:
 How to set up MongoDB:
 
 1. Go to this link:
-https://www.mongodb.com/lp/cloud/atlas/try4-reg?utm_source=google&utm_campaign=search_gs_pl_evergreen_atlas_core-high-int_prosp-brand_gic-null_ww-tier4_ps-all_desktop_eng_lead&utm_term=atlas%20mongodb&utm_medium=cpc_paid_search&utm_ad=p&utm_ad_campaign_id=22031347578&adgroup=173739098633&cq_cmp=22031347578&gad_source=1&gad_campaignid=22031347578&gbraid=0AAAAADQ1402RQvw9q4OJwZP6VO5GtZ_qL&gclid=CjwKCAjw46HPBhAMEiwASZpLRFKN7DMtT7IqoUSBUkCW3rOqDDmtJe0PZJrqOr2AAqQhL_6IIgeUNhoClzQQAvD_BwE
+[Setup MongoDB](https://www.mongodb.com/lp/cloud/atlas/try4-reg?utm_source=google&utm_campaign=search_gs_pl_evergreen_atlas_core-high-int_prosp-brand_gic-null_ww-tier4_ps-all_desktop_eng_lead&utm_term=atlas%20mongodb&utm_medium=cpc_paid_search&utm_ad=p&utm_ad_campaign_id=22031347578&adgroup=173739098633&cq_cmp=22031347578&gad_source=1&gad_campaignid=22031347578&gbraid=0AAAAADQ1402RQvw9q4OJwZP6VO5GtZ_qL&gclid=CjwKCAjw46HPBhAMEiwASZpLRFKN7DMtT7IqoUSBUkCW3rOqDDmtJe0PZJrqOr2AAqQhL_6IIgeUNhoClzQQAvD_BwE)
 
  2. There follow the instructions to set up a free MongoDB usership.
  3. When creatiating an user and password keep in mind that those are going to ypur .env file

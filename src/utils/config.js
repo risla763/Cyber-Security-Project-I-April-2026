@@ -9,8 +9,6 @@ const MONGODB_URI = process.env.NODE_ENV === 'test'
 console.log('DB URI:', MONGODB_URI)
 
 
-//muuttujat exportataan app.js fileen
-//app.js filessä muista referoida config.PORT tyyliin
 export default {
   PORT,
   MONGODB_URI

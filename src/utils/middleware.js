@@ -9,12 +9,12 @@ export const tokenExtractor = (request, response, next) => {
     next()
 }
 
-//tähän se, joka selvittää pyynnön:
+
 export const userExtractor = async (request, response, next) => {
   if (!request.tok){
     return response.status(401).json({error: 'token invalid'})
   }
-    //pyyntöön liittyvä käyttäjä?
+
   const decodedToken = jsonwebtoken.verify(request.tok, process.env.SECRET)
 
   if (!decodedToken.id){

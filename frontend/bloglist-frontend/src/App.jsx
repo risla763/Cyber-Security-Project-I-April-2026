@@ -10,6 +10,7 @@ import BlogForm from './components/CreateBlogs'
 import styled from 'styled-components'
 
 
+
 const LoginTitle = styled.h2`
     font-size: 1.7em;
     text-align: center;
@@ -58,6 +59,8 @@ const App = () => {
   const [user, setUser] = useState('')
   const [ErrorMessage, setErrorMessage] = useState('')
   const [page, setPage] = useState('')
+  // uusi
+  //const [userToken, setToken] = useState('')
 
 
   const [createVisible, setCreateVisible] = useState(false)
@@ -92,7 +95,7 @@ const App = () => {
   }
 
   const handleView = (id) => {
-    //console.log("viewNappi", id,"kkkkkk", user.id)
+
     const FalseOrTrue = blogs.find(blog =>
       blog.id === id
     )
@@ -137,11 +140,10 @@ const App = () => {
   }
 
   const handleLogin = async (event) => {
-    //alempi koodi tekee sen että dataa voi käsitellä ilman että sivu päivittyy
+
     event.preventDefault()
-    //console.log(username, password, "username ja password")
+
     try {
-      //tämä menee login.js
       const user = await loginService.login({ username, password })
 
       window.localStorage.setItem('loggedBlogUser', JSON.stringify(user))
@@ -149,24 +151,22 @@ const App = () => {
       setUser(user)
       setUsername('')
       setPassword('')
-    } catch {
+    } catch (error) {
       setErrorMessage('wrong username or password')
       setTimeout(() => {
-        setErrorMessage(null)
+        setErrorMessage('wrong username or password')
       }, 5000)
     }
-    console.log('logging in with', username, password)
+
   }
 
 
-  //vaihda alla olevan nimi parempaan (esim. ADDTODATABASE)
+
   const handleCreate = (blogObject) => {
     setBlogs(blogs.concat(blogObject))
   }
 
-  //KORJAA SE ETTÄ KAIKKI BLOGIT EIVÄT HETI NÄY POISTETTUINA..PITÄÄ PÄIVITTÄÄ SIVU MISKI?
-  //create ilman authoria toimii...KORJAAA koska like ei toimi tässä...
-  //createn jälkeen kun avaa blogin eikä sivua ole päivitetty käyttäjä, joka loi ei näy
+
   const handleDelete = async (blogId) => {
     console.log(blogId)
     blogService.deleteBlog(blogId).then(blogs => {
@@ -174,10 +174,7 @@ const App = () => {
  
     })
   }
-  //vielä se viesti window juttu
-  //ja joku että delete nappi näkyy vain jos omistat blogin...
 
-  //korjaa-> kun lisää blgoin niin lisääjän nimi näkyy heti
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogUser')
@@ -239,6 +236,7 @@ const App = () => {
           </Label>
         </div>
         <Button type="submit">login</Button>
+
         
       </form>
     </Backround>
@@ -279,6 +277,7 @@ const App = () => {
 
   )
 
+/*fix for the flaw 5:
   const ButtonForm = () => (
       <div>
         <a href="" onClick={toPage('blogs')}>
@@ -287,6 +286,7 @@ const App = () => {
       </div>
 
   )
+  */
 
   const LogInIfNotLogdIn = () => (
     <div>
@@ -296,20 +296,34 @@ const App = () => {
     </div>
   )
 
+  const BlogLink = () => {
+    return (
+     <a href={`/blogs?token=${user.token}`}>
+        blogs
+        
+      </a>
+    )}
+  
+
   return (
 
     <div>
       {!user && LoginForm()}
-      {ButtonForm()}
+
       {(!user || user === '?') && LogInIfNotLogdIn()}
       {user && ListBlogsForm()}
       {user && <BlogForm createVisible={createVisible}
         setCreateVisible={setCreateVisible}
         handleCreate={handleCreate}
       />}
+
+      {/* fix for the flaw 5 */}
+      {/* {ButtonForm()} */}
+       {/* for the fix for the flaw 5 you have to remove the row 323 */}
+      {user && user !== '?' && BlogLink()}
       {user && user !== '?' && <LogOutForm username={user.username} />}
     </div>
   )
 }
-//blogs kun käyttäjä sisällä vielä näkymään ja reitit
+
 export default App

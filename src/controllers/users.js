@@ -1,8 +1,10 @@
 import express from 'express'
 import UserMongo from '../models/userMongo.js'
 import BlogMongo from '../models/userMongo.js'
-import bcrypt from 'bcrypt'
+//fix for flaw 1:
+//import bcrypt from 'bcrypt'
 import populate from 'dotenv'
+import { userExtractor } from '../utils/middleware.js'
 
 const router = express.Router()
 
@@ -21,25 +23,53 @@ router.post('/', async (request, response) => {
     return response.status(400).json({error: 'username already exists'})
   }
 
-  const passwordHash = await bcrypt.hash(newUser.password, 10)
+
+  const password = newUser.password
+
+// fix for flaw 1:
+//const passwordHash = await bcrypt.hash(newUser.password, 10)
   const user = new UserMongo({
     username: newUser.username,
     name: newUser.name,
-    password: passwordHash
+    password: password
+  /*  fix for flaw 1:
+  //password: passwordHash
+  //and remove row 33
+  */
   })
   const savedUser = await user.save()
   return response.status(201).json(savedUser)
 })
 
-router.get('/', async (request, response) => {
+//fix for flaw 2: 
+router.get('/', userExtractor, async (request, response) => {
+  //fix for flaw 2: 
+  /*
+    const user = await UserMongo.findById(request.user.id)
+    if (!user.admin) {
+      return response.status(403).json({ error: 'this user has no access' })
+  }
+      */
     const users = await UserMongo.find({}).populate('blogs', {title: 1, author: 1, url: 1})
     response.json(users)
 })
 
-router.post('/reset', async (request, response) => {
+
+
+/*fix for flaw 3:
+  if (process.env.NODE_ENV === 'test') {
+    router.post('/reset', async (request, response) => {
+    await UserMongo.deleteMany({})
+    await BlogMongo.deleteMany({})
+    response.status(204).end()
+  })
+  }
+*/
+  router.post('/reset', async (request, response) => {
   await UserMongo.deleteMany({})
   await BlogMongo.deleteMany({})
   response.status(204).end()
 })
+
 
 export default router

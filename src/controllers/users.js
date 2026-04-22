@@ -4,7 +4,8 @@ import BlogMongo from '../models/userMongo.js'
 //fix for flaw 1:
 //import bcrypt from 'bcrypt'
 import populate from 'dotenv'
-import { userExtractor } from '../utils/middleware.js'
+//fix for flaw 2
+//import { userExtractor } from '../utils/middleware.js'
 
 const router = express.Router()
 
@@ -42,7 +43,9 @@ router.post('/', async (request, response) => {
 })
 
 //fix for flaw 2: 
-router.get('/', userExtractor, async (request, response) => {
+//router.get('/', userExtractor, async (request, response) => {
+  //remove the 48 line and use 46
+router.get('/', async (request, response) => {
   //fix for flaw 2: 
   /*
     const user = await UserMongo.findById(request.user.id)

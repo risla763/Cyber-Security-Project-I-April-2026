@@ -40,7 +40,7 @@ router.post('/', async (request, response) => {
   if  (!user || !passwordCorrect || user == null) {
     console.warn(`Failed login attempt with this username ${username}`)
 
-      //fix for flaw 4:
+      //fix for flaw 2
     //logger.warn(`Failed login attempt with username ${username}`)
     return response.status(401).json({
       error: 'invalid username or password'

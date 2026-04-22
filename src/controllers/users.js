@@ -1,6 +1,6 @@
 import express from 'express'
 import UserMongo from '../models/userMongo.js'
-import BlogMongo from '../models/userMongo.js'
+import BlogMongo from '../models/blogMongo.js'
 //fix for flaw 1:
 //import bcrypt from 'bcrypt'
 import populate from 'dotenv'
